@@ -1,0 +1,9 @@
+{
+    "name": "git_clone/store_mvc",
+    "description": "Application to reinforce the learning of the mvc structure",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
