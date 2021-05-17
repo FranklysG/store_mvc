@@ -12,6 +12,7 @@ class Connection{
     const NAME = 'pokedex';
     const PASS = '';
     const PREP = '1';
+    
     private $transaction;
     private $table;
     
