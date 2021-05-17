@@ -3,7 +3,7 @@
 namespace App\control\pages;
 
 use App\view\View;
-use App\model\entity\User;
+use App\model\Pokemon;
 
 class Home extends Page{
 
@@ -12,10 +12,12 @@ class Home extends Page{
      * @return String
      */
     public static function getHome(){
-        $objUser = new User;
+        $object = Pokemon::load();
+        print_r($object);
+
         $content = View::render('pages/home', array(
-            'title' => $objUser->name,
-            'content' => $objUser->title,
+            'title' => 'Teste de si MVC',
+            'content' => 'Opa comandante'
         ));
 
         return parent::getPage('Home', $content);
