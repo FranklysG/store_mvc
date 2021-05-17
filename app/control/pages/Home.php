@@ -3,6 +3,7 @@
 namespace App\control\pages;
 
 use App\view\View;
+use App\model\entity\User;
 
 class Home extends Page{
 
@@ -11,9 +12,10 @@ class Home extends Page{
      * @return String
      */
     public static function getHome(){
+        $objUser = new User;
         $content = View::render('pages/home', array(
-            'title' => 'Teste de si MVC',
-            'content' => 'Opa comandante'
+            'title' => $objUser->name,
+            'content' => $objUser->title,
         ));
 
         return parent::getPage('Home', $content);
