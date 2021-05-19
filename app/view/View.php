@@ -22,11 +22,11 @@ class View{
      */
     public static function render($view, $args = []){
         $contentView = self::getContentView($view);
+        
         $key = array_keys($args);
         $key = array_map(function($value){
             return '{{'.$value.'}}';
         },$key);
-        
         return str_replace($key,array_values($args),$contentView) ;
     }
 }

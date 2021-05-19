@@ -11,9 +11,7 @@ class Page{
      * @return String
      */
     private static function getHeader(){
-        return View::render('pages/header', array(
-            'content' => 'Header'
-        ));
+        return View::render('pages/header');
     }
 
      /**
@@ -21,9 +19,7 @@ class Page{
      * @return String
      */
     private static function getFooter(){
-        return View::render('pages/footer', array(
-            'content' => 'footer'
-        ));
+        return View::render('pages/footer');
     }
 
     /**
