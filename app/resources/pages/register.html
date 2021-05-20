@@ -1,34 +1,37 @@
-<form action="" method="POST">
+<form method="POST">
     <div class="form-group">
       <label for="Nome">Nome Pokemon</label>
-      <input type="text" class="form-control" placeholder="Bulbasaur">
+      <input name="id" type="text" value="{{id}}" class="form-control" placeholder="Bulbasaur">
+      <input name="name" type="text" value="{{name}}" class="form-control" placeholder="Bulbasaur">
+      <input name="peso" type="text" value="{{peso}}" class="form-control" placeholder="68">
+      <input name="altura" type="text" value="{{altura}}" class="form-control" placeholder="12">
     </div>
     <div class="form-group">
         <label for="Tipo">Selecione o tipo</label>
-        <select class="form-control" id="">
-          <option>BUG</option>
-          <option>DARK</option>
-          <option>DRAGON</option>
-          <option>ELETRIC</option>
-          <option>FAIRY</option>
-          <option>FIGHTING</option>
-          <option>FIRE</option>
-          <option>FLYING</option>
-          <option>GHOST</option>
-          <option>GRASS</option>
-          <option>GROUND</option>
-          <option>ICE</option>
-          <option>NORMAL</option>
-          <option>POISON</option>
-          <option>PSYCHIC</option>
-          <option>ROCK</option>
-          <option>STEEL</option>
-          <option>WATER</option>
+        <select class="form-control" id="" name="type">
+          <option value="bug">BUG</option>
+          <option value="dark">DARK</option>
+          <option value="dragon">DRAGON</option>
+          <option value="eletric">ELETRIC</option>
+          <option value="fairy">FAIRY</option>
+          <option value="fighting">FIGHTING</option>
+          <option value="fire">FIRE</option>
+          <option value="flying">FLYING</option>
+          <option value="ghost">GHOST</option>
+          <option value="grass">GRASS</option>
+          <option value="ground">GROUND</option>
+          <option value="ice">ICE</option>
+          <option value="normal">NORMAL</option>
+          <option value="poison">POISON</option>
+          <option value="psychic">PSYCHIC</option>
+          <option value="rock">ROCK</option>
+          <option value="steel">STEEL</option>
+          <option value="water">WATER</option>
         </select>
       </div>
       <div class="form-group">
         <label for="exampleFormControlFile1">Envie um imagem do seu pokemon</label>
-        <input type="file" class="form-control-file" id="">
+        <input type="file" class="form-control-file" id="" name="url">
       </div>
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button id="myBtnRegister" name="{{function}}" type="submit" class="btn btn-primary">Enviar</button>
   </form>

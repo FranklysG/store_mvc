@@ -10,6 +10,7 @@ class PokemonColors{
      */
     public static function replaceColor($args){
         $color = [
+            'default' => '#c2c2c2',
             'bug' => '#88960e',
             'dark' => '#402f25',
             'dragon' => '#725bda',

@@ -15,6 +15,8 @@ class Pokemon{
     public $name;
     public $url;
     public $type;
+    public $peso;
+    public $altura;
     public $created_at;
 
     /**
@@ -30,13 +32,38 @@ class Pokemon{
     }
 
     /**
+     * funçaõ responsavel por editar o pokemon cadastrado 
+     * pra salvar na tabela
+     * @return boolean
+     */
+    public function edit($where, $attributes = []){
+        $object = new Connection(self::TABLENAME);
+        $this->id = $object->onEdit($where, $attributes);
+
+        return true;
+    }
+
+    /**
+     * funçaõ responsavel por editar o pokemon cadastrado 
+     * pra salvar na tabela
+     * @return boolean
+     */
+    public function delete($id){
+        $object = new Connection(self::TABLENAME);
+        $object->onDelete($id);
+
+        return true;
+    }
+
+    /**
      * função resposavel por retornar os objetos do banco .
      * @param $where 
      * @param $order 
      * @param $limit 
      */
     public static function load($where = null, $order = null, $limit = null){
-        return (new Connection(self::TABLENAME))->onReload($where,$order,$limit);
+        $load = (new Connection(self::TABLENAME))->onReload($where,$order,$limit);
+        return $load;
     }
 
 }

@@ -1,14 +1,18 @@
 
-    <div class="col-md-4">
-      <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-        <div class="card-body d-flex flex-column align-items-start">
-          <strong class="d-inline-block mb-2 p-2 text-white" style="border-radius:50px;background: {{color}};">{{type}}</strong>
-          <h3 class="mb-0">
-            <div class="text-dark" href="#">{{name}}</div>
-          </h3>
-          <div class="mb-1 text-muted">Peso: {{peso}}</div>
-          <div class="mb-1 text-muted">Altura: {{altura}}</div>
-        </div>
-        <img class="w-50 card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="{{img}}" data-holder-rendered="true">
+<div class="col-md-4">
+  <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+    <div class="card-body d-flex flex-column align-items-start">
+      <strong class="d-inline-block mb-2 p-2 text-white" style="border-radius:50px;background: {{color}};">{{type}}</strong>
+      <h3 class="mb-0">
+        <div class="text-dark" href="#">{{name}}</div>
+      </h3>
+      <div class="mb-1 text-muted">Peso: {{peso}}</div>
+      <div class="mb-1 text-muted">Altura: {{altura}}</div>
+      <div class="mb-1 d-flex">
+        <button onclick="onEdit(this.value);"  type="submit" value="{{id}}" class="m-1 btn btn-sm btn-primary">Editar</button>
+        <button onclick="onDelete(this.value);"  type="submit" value="{{id}}"class="m-1 btn btn-sm btn-danger">Excluir</button>
       </div>
     </div>
+    <img class="w-50 card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="{{img}}" data-holder-rendered="true">
+  </div>
+</div>

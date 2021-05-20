@@ -62,6 +62,20 @@ class Connection{
         }
     }
 
+    public function onEdit($where,$attributes = []){
+        try {
+            $keys  = array_keys($attributes);
+            $sql = 'UPDATE'.$this->table.' SET '.implode('=?,',$attributes).'=? WHERE'.$where;
+            $this->execute($sql, array_values($attributes));
+            return $this->transaction->lastInsertId();
+        } catch (PDOExeption $e) {
+            die('ERROR: '.$e->getMessage());
+        }
+    }
+
+
+
+
     public function onReload($where = null, $order = null, $limit = null){
         try {
             $where = strlen($where)? ' WHERE '.$where: ''; 
@@ -76,8 +90,7 @@ class Connection{
 
     public function onDelete($id){
         try {
-            $where = strlen($where)? ' WHERE id = '.$where: '';
-            $sql = 'DELETE FROM '.$this->table.$where;
+            $sql = 'DELETE FROM '.$this->table.' WHERE id = '.$id;
             return $this->execute($sql);
         } catch (PDOExeption $e) {
             die('ERROR: '.$e->getMessage());

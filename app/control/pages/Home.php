@@ -14,12 +14,19 @@ class Home extends Page{
      * @return String
      */
     public static function getHome(){
-        // $object = Pokemon::load();
-        $content = View::render('pages/home', array(
-            'title' => 'Home',
-            'content' => '<div class="row my-4 px-5">'.self::getPokemon().'</div>'
-        ));
-
+        (!isset($_POST['register']))?: self::insert($_POST);
+        (!isset($_GET['onDelete']))?: self::delete($_GET);
+        if(isset($_GET['onEdit'])){
+            $content = self::edit($_GET['onEdit']);
+        }else{ 
+            $content = View::render('pages/home', array(
+                'title' => 'Home',
+                'register' => '<div class="row my-4 px-5">'.View::render('pages/register', array('function' => 'register')).'</div>',
+                'contentPokemon' => '<div class="row my-4 px-5">'.self::getPokemon().'</div>',
+                'contentMyPokemon' => '<div class="row my-4 px-5">'.self::getMyPokemon().'</div>'
+            ));
+        }
+       
         return parent::getPage('Home', $content);
         
     }
@@ -48,6 +55,7 @@ class Home extends Page{
                break;
             }
             $dataString .= View::render('pages/pokemon', array(
+                'id' => 'api',
                 'name' => $value->name,
                 'type' => $nameType,
                 'img' => $img,
@@ -58,5 +66,66 @@ class Home extends Page{
         }
        
         return $dataString;
+    }
+
+    public static function getMyPokemon(){
+        $dataString = '';
+        $objects = Pokemon::load();
+        foreach ($objects as $value) {
+            $dataString .= View::render('pages/pokemon', array(
+                'id' => $value->id,
+                'name' => $value->name,
+                'type' => $value->type,
+                'img' => $value->url,
+                'peso' => $value->peso,
+                'altura' => $value->altura,
+                'color' => PokemonColors::replaceColor($value->type)
+            ));
+        }
+
+        return $dataString;
+    }
+
+    public static function edit($param){
+        $objects = Pokemon::load($param);
+        $dataString = '';
+        foreach ($objects as $value) {
+            $dataString = View::render('pages/register', array(
+                'function' => 'onUpdate',
+                'id' => $value->id,
+                'name' => $value->name,
+                'type' => $value->type,
+                'img' => $value->url,
+                'peso' => $value->peso,
+                'altura' => $value->altura
+            ));
+        }
+        // var_dump($dataString);exit;
+        return $dataString;
+    }
+
+    public static function insert($param){
+        if(isset($param['register'])){
+            unset($param['register']);
+            $object = new Pokemon;
+            $object->store($param);
+            header('Location: index.php');
+        }
+    }
+
+    public static function update($param){
+        if(isset($param['onUpdate'])){
+            $object = new Pokemon;
+            $object->edit($param['onEdit']);
+            header('Location: index.php');
+        }
+    }
+
+    public static function delete($param){
+        if(isset($param['onDelete'])){
+            $object = new Pokemon;
+            $object->delete($param['onDelete']);
+            header('Location: index.php');
+        }
     }
 }
