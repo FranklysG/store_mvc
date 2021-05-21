@@ -4,8 +4,12 @@ namespace App\control\pages;
 
 use App\lib\util\PokemonColors;
 use App\lib\util\AppUtil;
+use App\lib\util\Upload;
+
 use App\view\View;
+
 use App\model\Pokemon;
+use App\model\Banner;
 
 class Home extends Page{
 
@@ -14,7 +18,8 @@ class Home extends Page{
      * @return String
      */
     public static function getHome(){
-
+        // var_dump($_POST);exit;
+        self::sendImage($_FILES);
         (!isset($_GET['register']))?: self::insert($_GET);
         (!isset($_GET['onDelete']))?: self::delete($_GET);
         (!isset($_GET['onUpdate']))?: self::update($_GET);
@@ -24,6 +29,7 @@ class Home extends Page{
             $content = View::render('pages/home', array(
                 'title' => 'Home',
                 'register' => '<div class="row my-4 px-5">'.View::render('pages/register', array('function' => 'register', 'id' => '', 'name' => '', 'peso' => '', 'altura' => '')).'</div>',
+                'banner' => '<div class="row my-4 px-5">'.View::render('pages/upload').'</div>',
                 'contentPokemon' => '<div class="row my-4 px-5">'.self::getPokemon().'</div>',
                 'contentMyPokemon' => '<div class="row my-4 px-5">'.self::getMyPokemon().'</div>'
             ));
@@ -86,6 +92,21 @@ class Home extends Page{
         }
 
         return $dataString;
+    }
+
+    public static function sendImage($files){
+        if(!empty($files)){
+            $object = new Upload($files['image']);
+            $object->uploaded('tmp');
+
+            $img = new Banner;
+            $img->store(array(
+                'name' => $files['image']['name']
+            ));
+
+            header('Location: /store_mvc');
+        }
+
     }
 
     /**
