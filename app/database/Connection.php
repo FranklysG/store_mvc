@@ -62,10 +62,10 @@ class Connection{
         }
     }
 
-    public function onEdit($where,$attributes = []){
+    public function onEdit($where, $attributes){
         try {
             $keys  = array_keys($attributes);
-            $sql = 'UPDATE'.$this->table.' SET '.implode('=?,',$attributes).'=? WHERE'.$where;
+            $sql = 'UPDATE '.$this->table.' SET '.implode('=?,',$keys).'=? WHERE '.$where;
             $this->execute($sql, array_values($attributes));
             return $this->transaction->lastInsertId();
         } catch (PDOExeption $e) {

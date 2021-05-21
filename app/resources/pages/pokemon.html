@@ -9,8 +9,8 @@
       <div class="mb-1 text-muted">Peso: {{peso}}</div>
       <div class="mb-1 text-muted">Altura: {{altura}}</div>
       <div class="mb-1 d-flex">
-        <button onclick="onEdit(this.value);"  type="submit" value="{{id}}" class="m-1 btn btn-sm btn-primary">Editar</button>
-        <button onclick="onDelete(this.value);"  type="submit" value="{{id}}"class="m-1 btn btn-sm btn-danger">Excluir</button>
+        <button onclick="onEdit(this.value);"  type="submit" value="onEdit={{id}}" class="m-1 btn btn-sm btn-primary">Editar</button>
+        <button onclick="onDelete(this.value);"  type="submit" value="onDelete={{id}}"class="m-1 btn btn-sm btn-danger">Excluir</button>
       </div>
     </div>
     <img class="w-50 card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="{{img}}" data-holder-rendered="true">

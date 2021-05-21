@@ -16,12 +16,13 @@ class Home extends Page{
     public static function getHome(){
         (!isset($_POST['register']))?: self::insert($_POST);
         (!isset($_GET['onDelete']))?: self::delete($_GET);
+        (!isset($_GET['onUpdate']))?: self::update($_GET);
         if(isset($_GET['onEdit'])){
             $content = self::edit($_GET['onEdit']);
         }else{ 
             $content = View::render('pages/home', array(
                 'title' => 'Home',
-                'register' => '<div class="row my-4 px-5">'.View::render('pages/register', array('function' => 'register')).'</div>',
+                'register' => '<div class="row my-4 px-5">'.View::render('pages/register', array('function' => 'register', 'id' => '', 'name' => '', 'peso' => '', 'altura' => '')).'</div>',
                 'contentPokemon' => '<div class="row my-4 px-5">'.self::getPokemon().'</div>',
                 'contentMyPokemon' => '<div class="row my-4 px-5">'.self::getMyPokemon().'</div>'
             ));
@@ -86,24 +87,36 @@ class Home extends Page{
         return $dataString;
     }
 
+    /**
+     * função responsavel por carregar obejeto do banco de dados
+     * no form
+     * @param $param id do registro no banco
+     * @return String
+     */
     public static function edit($param){
-        $objects = Pokemon::load($param);
-        $dataString = '';
-        foreach ($objects as $value) {
-            $dataString = View::render('pages/register', array(
-                'function' => 'onUpdate',
-                'id' => $value->id,
-                'name' => $value->name,
-                'type' => $value->type,
-                'img' => $value->url,
-                'peso' => $value->peso,
-                'altura' => $value->altura
-            ));
-        }
-        // var_dump($dataString);exit;
+        $objects = Pokemon::load('id = '.$param);
+        if(!empty($objects)){
+            $dataString = '';
+            foreach ($objects as $value) {
+                $dataString = View::render('pages/register', array(
+                    'function' => 'onUpdate',
+                    'id' => $value->id,
+                    'name' => $value->name,
+                    'type' => $value->type,
+                    'img' => $value->url,
+                    'peso' => $value->peso,
+                    'altura' => $value->altura
+                ));
+            }}else{
+                $dataString = View::render('pages/error', array());
+            }
         return $dataString;
     }
 
+    /**
+     * função responsavel por inserir um registro no banco
+     * @param $param atributos do form
+     */
     public static function insert($param){
         if(isset($param['register'])){
             unset($param['register']);
@@ -115,12 +128,17 @@ class Home extends Page{
 
     public static function update($param){
         if(isset($param['onUpdate'])){
+            unset($param['onUpdate']);
             $object = new Pokemon;
-            $object->edit($param['onEdit']);
+            $object->edit('id = '.$param['id'], $param);
             header('Location: index.php');
         }
     }
 
+    /**
+     * função responsavel por deltar o registro do banco 
+     * @param $param id do registro que vai ser deletado
+     */
     public static function delete($param){
         if(isset($param['onDelete'])){
             $object = new Pokemon;

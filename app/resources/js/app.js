@@ -7,12 +7,17 @@ var inpuId = document.querySelector('#inputId');
 
 // função responsavel por chamar o modal para edição
 function onEdit(value){
-  window.location = "?onEdit="+value;
+  window.location = "?"+value;
 };// espera o click no botão para mostrar o modal
 
 // Responsavel por deletar um registro
 function onDelete(value){
-  window.location = "?onDelete="+value;
+  window.location = "?"+value;
+};// espera o click no botão para mostrar o modal
+
+// Responsavel por deletar um registro
+function onUpdate(value){
+  window.location = "?onUpdate="+value;
 };// espera o click no botão para mostrar o modal
 
 // espera o click no botão para mostrar o modal
