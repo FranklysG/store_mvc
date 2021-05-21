@@ -376,7 +376,7 @@ class AppUtil
         return json_decode($output);
     }
 
-     public static function paste_another_folder($img_name, $sub_folder){
+     public static function paste_another_folder($img_name, $sub_folder = ''){
         $source_file   = 'tmp/'.$img_name;
         $target_path   = 'tmp/'.$sub_folder;
         $target_file   =  $target_path . '/'.$img_name;
@@ -399,4 +399,5 @@ class AppUtil
             }
         }
      }
+
 }

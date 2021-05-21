@@ -14,7 +14,8 @@ class Home extends Page{
      * @return String
      */
     public static function getHome(){
-        (!isset($_POST['register']))?: self::insert($_POST);
+
+        (!isset($_GET['register']))?: self::insert($_GET);
         (!isset($_GET['onDelete']))?: self::delete($_GET);
         (!isset($_GET['onUpdate']))?: self::update($_GET);
         if(isset($_GET['onEdit'])){
@@ -77,7 +78,7 @@ class Home extends Page{
                 'id' => $value->id,
                 'name' => $value->name,
                 'type' => $value->type,
-                'img' => $value->url,
+                'img' => 'tmp/pokemonSiluete.png',
                 'peso' => $value->peso,
                 'altura' => $value->altura,
                 'color' => PokemonColors::replaceColor($value->type)
