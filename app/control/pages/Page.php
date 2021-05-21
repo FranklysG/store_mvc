@@ -3,7 +3,7 @@
 namespace App\control\pages;
 
 use App\view\View;
-
+use App\model\Banner;
 class Page{
 
     /**
@@ -22,6 +22,16 @@ class Page{
         return View::render('pages/footer');
     }
 
+     /**
+     * Retorna o conteudo do Footer
+     * @return String
+     */
+    private static function getBanner(){
+        $object = Banner::load(null, 'created_at DESC', '1');
+        
+        return array_shift($object)->name;
+    }
+
     /**
      * Retorna o conteudo da Pagina 
      * @param String $title
@@ -32,6 +42,7 @@ class Page{
         return View::render('pages/page', array(
             'title' => $title,
             'header' => self::getHeader(),
+            'banner' => self::getBanner(),
             'content' => $content,
             'footer' => self::getFooter()
         ));

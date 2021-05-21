@@ -29,7 +29,7 @@ class Home extends Page{
             $content = View::render('pages/home', array(
                 'title' => 'Home',
                 'register' => '<div class="row my-4 px-5">'.View::render('pages/register', array('function' => 'register', 'id' => '', 'name' => '', 'peso' => '', 'altura' => '')).'</div>',
-                'banner' => '<div class="row my-4 px-5">'.View::render('pages/upload').'</div>',
+                'upload' => '<div class="row my-4 px-5">'.View::render('pages/upload').'</div>',
                 'contentPokemon' => '<div class="row my-4 px-5">'.self::getPokemon().'</div>',
                 'contentMyPokemon' => '<div class="row my-4 px-5">'.self::getMyPokemon().'</div>'
             ));
