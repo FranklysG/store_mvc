@@ -28,8 +28,8 @@ class Page{
      */
     private static function getBanner(){
         $object = Banner::load(null, 'created_at DESC', '1');
-        
-        return array_shift($object)->name;
+        (isset($object))? $object = array_shift($object)->name : $object = '';
+        return $object;
     }
 
     /**
