@@ -6,7 +6,7 @@ class PokemonColors{
     
     /**
      * função responsavel por dar o replace nas cores do tipo dos pokemons
-     * @param $args tipo do pokemon => grass/ fire
+     * $args tipo do pokemon => grass/ fire
      */
     public static function replaceColor($args){
         $color = [

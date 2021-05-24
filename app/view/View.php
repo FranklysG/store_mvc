@@ -6,8 +6,6 @@ class View{
 
     /**
      * responsavel por retornar o conteudo da view
-     * @param String $view
-     * @return String
      */
     private static function getContentView($view){
         $file = __DIR__.'/../resources/'.$view.'.html';
@@ -16,9 +14,6 @@ class View{
 
     /**
      * responsavel por redenrizar a view
-     * @param String $view
-     * @param Array $args array(String/Numeric)
-     * @return String
      */
     public static function render($view, $args = []){
         $contentView = self::getContentView($view);

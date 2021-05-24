@@ -15,10 +15,8 @@ class Home extends Page{
 
     /**
      * Retorna o conteudo da home
-     * @return String
      */
     public static function getHome(){
-        // var_dump($_POST);exit;
         self::sendImage($_FILES);
         (!isset($_GET['register']))?: self::insert($_GET);
         (!isset($_GET['onDelete']))?: self::delete($_GET);
@@ -41,7 +39,6 @@ class Home extends Page{
 
     /**
      * função responsavelpor buscar os pokemons da api
-     * @return String
      */
     public static function getPokemon(){
         $limit = 6;
@@ -77,6 +74,9 @@ class Home extends Page{
         return $dataString;
     }
 
+    /**
+     * carrega os pokemons que estão cadastrados na base de dados
+     */
     public static function getMyPokemon(){
         $dataString = '';
         $objects = Pokemon::load();
@@ -96,6 +96,10 @@ class Home extends Page{
         return $dataString;
     }
 
+    /**
+     * responsavel por salvar o nome da imagem no banco e transferir a 
+     * imagem pra pasta tmp
+     */
     public static function sendImage($files){
         if(!empty($files)){
             $object = new Upload($files['image']);
@@ -113,9 +117,7 @@ class Home extends Page{
 
     /**
      * função responsavel por carregar obejeto do banco de dados
-     * no form
-     * @param $param id do registro no banco
-     * @return String
+     * no form passando o id do registro
      */
     public static function edit($param){
         $objects = Pokemon::load('id = '.$param);
@@ -140,7 +142,6 @@ class Home extends Page{
 
     /**
      * função responsavel por inserir um registro no banco
-     * @param $param atributos do form
      */
     public static function insert($param){
         if(isset($param['register'])){
@@ -151,6 +152,9 @@ class Home extends Page{
         }
     }
 
+    /**
+     * Função responsavel por atualizar um registro no banco 
+     */
     public static function update($param){
         if(isset($param['onUpdate'])){
             unset($param['onUpdate']);
@@ -162,7 +166,7 @@ class Home extends Page{
 
     /**
      * função responsavel por deltar o registro do banco 
-     * @param $param id do registro que vai ser deletado
+     * passando o id do registro a ser deletado
      */
     public static function delete($param){
         if(isset($param['onDelete'])){

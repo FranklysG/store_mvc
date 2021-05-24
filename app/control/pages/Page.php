@@ -8,7 +8,6 @@ class Page{
 
     /**
      * Retorna o conteudo do header 
-     * @return String
      */
     private static function getHeader(){
         return View::render('pages/header');
@@ -16,15 +15,14 @@ class Page{
 
      /**
      * Retorna o conteudo do Footer
-     * @return String
      */
     private static function getFooter(){
         return View::render('pages/footer');
     }
 
      /**
-     * Retorna o conteudo do Footer
-     * @return String
+     * Reposavel por carregar o ultimo banner cadastrado no banco
+     * e carregar-lo no slid 
      */
     private static function getBanner(){
         $object = Banner::load(null, 'created_at DESC', '1');
@@ -33,10 +31,8 @@ class Page{
     }
 
     /**
-     * Retorna o conteudo da Pagina 
-     * @param String $title
-     * @param Array $content
-     * @return String
+     * Responsavel por construir uma pagina com os elementos ja carregados
+     * header, slid e footer
      */
     public static function getPage($title, $content = []){
         return View::render('pages/page', array(

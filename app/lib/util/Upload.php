@@ -11,6 +11,9 @@ class Upload {
     private $error;
     private $size;
 
+    /**
+     * passando os atributos da imagem enviada no construtor
+     */
     public function __construct($files){
         $arq = pathinfo($files['name']);
         $this->name = $arq['filename'];
@@ -21,11 +24,19 @@ class Upload {
         $this->size = $files['size'];
     }
 
+    /**
+     * arrumando o nome da imagem com a extensão 
+     */
     public function getBaseName(){
         $ext = !strlen($this->ext)?: '.'.$this->ext;
         return $this->name.$ext;
     }
 
+    /**
+     * carrega a imagem para outra pasta da aplicação 
+     * se der erro na imagem ou alguma coisa do upload 
+     * ele já retorna false
+     */
     public function uploaded($dir){
         if($this->error != 0){ return false;}
         $path = $dir.'/'.$this->getBaseName();

@@ -22,6 +22,10 @@ class Connection{
        $this->transaction();
     }
 
+    /**
+     * resposavel por abrir a transação com banco, se der erro aqui 
+     * já cai logo na exeção 
+     */
     public function transaction(){
         try {
             $this->transaction = new PDO('mysql:host='.self::HOST.';dbname='.self::NAME,self::USER,self::PASS);
@@ -32,6 +36,9 @@ class Connection{
         }
     }
 
+    /**
+     * resposavel por fechar a transação aberta 
+     */
     public function close(){
         try {
             
@@ -40,6 +47,10 @@ class Connection{
         }
     }
     
+    /**
+     * resposavel por executar as querys e substituir os atributos passados
+     * por parametro
+     */
     public function execute($sql, $param = []){
         try {
             $object = $this->transaction->prepare($sql);
@@ -50,6 +61,9 @@ class Connection{
         }
     }
 
+    /**
+     * resposanvel por salvar as requisições no banco
+     */
     public function onSave($attributes = []){
         try {
             $keys  = array_keys($attributes);
