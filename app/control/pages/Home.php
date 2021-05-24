@@ -28,10 +28,10 @@ class Home extends Page{
         }else{ 
             $content = View::render('pages/home', array(
                 'title' => 'Home',
-                'register' => '<div class="row my-4 px-5">'.View::render('pages/register', array('function' => 'register', 'id' => '', 'name' => '', 'peso' => '', 'altura' => '')).'</div>',
-                'upload' => '<div class="row my-4 px-5">'.View::render('pages/upload').'</div>',
-                'contentPokemon' => '<div class="row my-4 px-5">'.self::getPokemon().'</div>',
-                'contentMyPokemon' => '<div class="row my-4 px-5">'.self::getMyPokemon().'</div>'
+                'register' => View::render('pages/register', array('function' => 'register', 'id' => '', 'name' => '', 'peso' => '', 'altura' => '')),
+                'upload' => View::render('pages/upload'),
+                'contentPokemon' => self::getPokemon(),
+                'contentMyPokemon' => self::getMyPokemon()
             ));
         }
        
@@ -69,7 +69,8 @@ class Home extends Page{
                 'img' => $img,
                 'peso' => $peso,
                 'altura' => $altura,
-                'color' => PokemonColors::replaceColor($nameType)
+                'color' => PokemonColors::replaceColor($nameType),
+                'classButton' => 'd-none' 
             ));
         }
        
@@ -87,7 +88,8 @@ class Home extends Page{
                 'img' => 'tmp/pokemonSiluete.png',
                 'peso' => $value->peso,
                 'altura' => $value->altura,
-                'color' => PokemonColors::replaceColor($value->type)
+                'color' => PokemonColors::replaceColor($value->type),
+                'classButton' => 'd-inline-block'
             ));
         }
 
@@ -127,7 +129,8 @@ class Home extends Page{
                     'type' => $value->type,
                     'img' => $value->url,
                     'peso' => $value->peso,
-                    'altura' => $value->altura
+                    'altura' => $value->altura,
+                    'classForm' => 'myForm'
                 ));
             }}else{
                 $dataString = View::render('pages/error', array());

@@ -8,7 +8,7 @@
       </h3>
       <div class="mb-1 text-muted">Peso: {{peso}}</div>
       <div class="mb-1 text-muted">Altura: {{altura}}</div>
-      <div class="mb-1 d-flex">
+      <div class="mb-1 d-flex {{classButton}}">
         <button onclick="onEdit(this.value);"  type="submit" value="onEdit={{id}}" class="m-1 btn btn-sm btn-primary">Editar</button>
         <button onclick="onDelete(this.value);"  type="submit" value="onDelete={{id}}"class="m-1 btn btn-sm btn-danger">Excluir</button>
       </div>

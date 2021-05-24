@@ -3,7 +3,7 @@
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
-        <p>{{register}}</p>
+        <div class="row">{{register}}</div>
     </div>
 </div>
 <!-- The Modal -->
@@ -11,16 +11,16 @@
     <!-- Modal content -->
     <div class="modal-content">
         <span class="closeBanner">&times;</span>
-        <p>{{upload}}</p>
+        <div class="row">{{upload}}</div>
     </div>
 </div>
 <nav class="d-flex" style="justify-content: center;">
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Meus pokemons</button>
-        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Pokemons</button>
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Pokedex</button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Meus Pokemons</button>
     </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">{{contentMyPokemon}}</div>
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">{{contentPokemon}}</div>
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><div class="row my-5 mx-5">{{contentPokemon}}</div></div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"><div class="row my-5 mx-5">{{contentMyPokemon}}</div></div>
 </div>
