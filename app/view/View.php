@@ -7,7 +7,7 @@ class View{
     /**
      * responsavel por retornar o conteudo da view
      */
-    private static function getContentView($view){
+    private static function getView($view){
         $file = __DIR__.'/../resources/'.$view.'.html';
         return (!file_exists($file))?:file_get_contents($file);
     }
@@ -16,7 +16,7 @@ class View{
      * responsavel por redenrizar a view
      */
     public static function render($view, $args = []){
-        $contentView = self::getContentView($view);
+        $contentView = self::getView($view);
         
         $key = array_keys($args);
         $key = array_map(function($value){

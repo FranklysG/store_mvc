@@ -21,9 +21,9 @@ class Home extends Page{
         (!isset($_GET['register']))?: self::insert($_GET);
         (!isset($_GET['onDelete']))?: self::delete($_GET);
         (!isset($_GET['onUpdate']))?: self::update($_GET);
-        if(isset($_GET['onEdit'])){
-            $content = self::edit($_GET['onEdit']);
-        }else{ 
+        (isset($_GET['onEdit']))?
+            $content = self::edit($_GET['onEdit'])
+        : 
             $content = View::render('pages/home', array(
                 'title' => 'Home',
                 'register' => View::render('pages/register', array('function' => 'register', 'id' => '', 'name' => '', 'peso' => '', 'altura' => '')),
@@ -31,7 +31,7 @@ class Home extends Page{
                 'contentPokemon' => self::getPokemon(),
                 'contentMyPokemon' => self::getMyPokemon()
             ));
-        }
+        ;
        
         return parent::getPage('Home', $content);
         
