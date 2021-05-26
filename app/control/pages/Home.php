@@ -54,7 +54,7 @@ class Home extends Page{
             $img .= $attributes->id.'.png';
             $peso = $attributes->weight;
             $altura = $attributes->height;
-            $types = $attributes->types;
+            $types = $attributes->types; 
             foreach ($types as $type) {
                $nameType .= $type->type->name;
                break;
